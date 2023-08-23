@@ -36,16 +36,16 @@ function updateNavOnLogin() {
   $("#submit").show();
   $("#favorites").show();
   $("#my-stories").show();
- 
 }
 
 /** When a user clicks the submit button that appears after a user has logged in */
 function navSubmitClick(evt) {
   $addNewStoryForm.show(); // Displays the add New Story form
+  $addNewStoryForm.prependTo($storiesLists);
   $favoriteStoriesList.hide(); 
   $mystoriesList.hide();
   $allStoriesList.show(); // shows the allStoriesList even when the add new story form is displayed
-
+  
 }
 
 $("#submit").on("click", navSubmitClick);
@@ -57,6 +57,8 @@ function amendFavoritesTab() {
   $addNewStoryForm.hide()
   $storiesLists.hide(); // hides all story lists
   $favoriteStoriesList.show();
+  $loginForm.hide();
+  $signupForm.hide();
 
   // if user has no favorites saved, message will display saying that no favorites have been added yet
   if (currentUser.favorites.length === 0) { 
@@ -81,6 +83,8 @@ function amendMyStoriesTab() {
   $addNewStoryForm.hide();
   $storiesLists.hide();
   $mystoriesList.show();
+  $loginForm.hide();
+  $signupForm.hide();
 
   // if user has no stories added, message will display saying that no stories have been added yet
   if (currentUser.ownStories.length === 0) {
