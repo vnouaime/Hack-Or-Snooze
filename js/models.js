@@ -152,14 +152,17 @@ class User {
    */
 
   static async signup(username, password, name) {
+   
     const response = await axios({
       url: `${BASE_URL}/signup`,
       method: "POST",
       data: { user: { username, password, name } },
     });
+    
+    
 
     let { user } = response.data
-
+    
     return new User(
       {
         username: user.username,
@@ -169,6 +172,7 @@ class User {
         ownStories: user.stories
       },
     );
+  
   }
 
   /** Login in user with API, make User instance & return it.
@@ -185,8 +189,6 @@ class User {
     });
 
     let { user } = response.data;
-    console.log(response.data);
-    console.log(user);
 
     return new User(
       {

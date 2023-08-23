@@ -18,7 +18,7 @@ async function getAndShowStoriesOnStart() {
  * - story: an instance of Story
  *
  * Returns the markup for the story.
- */
+*/
 
 function generateStoryMarkup(story, showDeleteBtn = false) {
   // console.debug("generateStoryMarkup", story);
@@ -77,12 +77,13 @@ async function addNewStoryToPage(evt) {
   const $newStory = {title: $("#new-story-title").val(), author: $("#new-story-author").val(), url: $("#new-story-url").val()};
   const addedStory = await StoryList.addStory(currentUser, $newStory);
 
-  storyList = await StoryList.getStories();
-  putStoriesOnPage();
-
   // hides and resets form after submission
   $addNewStoryForm.slideUp("slow");
   $addNewStoryForm.trigger("reset");
+  
+  storyList = await StoryList.getStories();
+  putStoriesOnPage();
+
 }
 
 $addNewStoryForm.on("submit", addNewStoryToPage);
@@ -91,25 +92,23 @@ $addNewStoryForm.on("submit", addNewStoryToPage);
 /** When star is clicked, adds or deletes story to favorites array for user. Updates API as well for user */
 async function toggleFavoriteStories(evt) {
   const $star = $(evt.target);
+  console.log($star);
   const $closestLi = $star.closest("li"); // li element story of the star that has been clicked
   const $storyId = $closestLi.attr("id"); // selects the story Id of the closest li element of the star that has been clicked
 
   // Checks to see if story has been favorited or not 
-  if ($star.hasClass("favorited")) {
+  if ($star.hasClass("fas")) {
     $star.closest("i").toggleClass("fas far");
-    $star.removeClass("favorited")
     await User.addOrDeleteFavoriteStories("DELETE", $storyId); // Deletes story from favorites array of user if user is clicking a story that has already been favorited
   }
   
   else {
     $star.closest("i").toggleClass("fas far");
-    $star.addClass("favorited");
     await User.addOrDeleteFavoriteStories("POST", $storyId); // Adds story to favorites array of user if story has not been favorited   
   }
 }
 
 $storiesLists.on("click", ".star", toggleFavoriteStories);
-$favoriteStoriesList.on("click", ".star", toggleFavoriteStories);
 
 /** When trash can is clicked next to own story on mystories page, calls removeStory from StoryList class to remove from API. Removes story li from page */
 async function deleteStory(evt) {
