@@ -55,7 +55,7 @@ function getTrashCanHTML() {
   return `<span class="trash-can"><i class="fas fa-trash-alt"></i></span>`;
 }
 
-/** Gets list of stories from server, generates their HTML, and puts on page. */
+/** Gets list of stories from server, generates their HTML, and puts on page. Vera Nouaime */
 function putStoriesOnPage() {
   console.debug("putStoriesOnPage");
 

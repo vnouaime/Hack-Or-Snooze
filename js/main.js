@@ -1,6 +1,6 @@
 "use strict";
 
-// So we don't have to keep re-finding things on page, find DOM elements once:
+// So we don't have to keep re-finding things on page, find DOM elements once: Vera Nouaime
 
 const $body = $("body");
 

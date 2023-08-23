@@ -69,7 +69,7 @@ $navLogOut.on("click", logout);
  */
 
 /** If there are user credentials in local storage, use those to log in
- * that user. This is meant to be called on page load, just once.
+ * that user. This is meant to be called on page load, just once. Vera Nouaime
  */
 
 async function checkForRememberedUser() {

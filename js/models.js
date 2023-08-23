@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; 
 
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
 

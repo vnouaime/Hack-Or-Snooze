@@ -2,7 +2,7 @@
 
 /******************************************************************************
  * Handling navbar clicks and updating navbar
- */
+ */ 
 
 /** Show main list of all stories when click site name */
 
